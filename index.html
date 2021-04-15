@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Land&Globe</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/téléchargement.png" rel="icon">
+  <link href="img/téléchargement.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+    Template Name: Soon
+    Template URL: https://templatemag.com/soon-website-under-construction-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+
+
+</head>
+
+
+<!-- <script type="text/javascript">
+  // var mydata = require("./km.json");
+
+  var requestURL = 'https://ycoussemacker.github.io/km.json'
+
+  var request = new XMLHttpRequest();
+
+  var km = 0;
+
+  
+
+  
+
+  function read_json(){   
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    request.onload = function() {
+      km = request.response.km;
+      console.log(km);
+      document.getElementById('nb').innerHTML = km; 
+
+      progress_bar();
+      
+    }
+  }
+
+  
+
+  function write_json(){
+    var to_add = parseInt(document.getElementById('km').value);
+    km = km + to_add;
+    console.log("Write : " + km);
+    var data = {"km" : km};
+    var jsonData = JSON.stringify(data);
+
+    //écriture sur le json
+    var a = document.createElement("a");
+    var file = new Blob([jsonData], {type: 'text/plain'});
+    a.href = URL.createObjectURL(file);
+    a.replaceWith= requestURL;
+    a.click();
+    URL.revokeObjectURL(a.href)
+    read_json();
+
+    // request.open('SET', requestURL);
+    // request.send();
+    // request.onload = function() {
+    //   request.response.km = km + to_add;
+    // }
+    // read_json();
+  }
+</script> -->
+
+
+<body onload="read_database()">
+
+  <div id="h">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="screen">
+            <h2 style="font-weight: 600;">Land&Globe</h2>
+            <div class="name">
+              <img src="img/Bloc_Virades_Espoir-Horizontal-Blanc-01.png" class="aligncenter" width="50%">
+            </div>
+            <h5>
+              Au vu du contexte actuel, il nous est difficile d’utiliser le ballon ovale mais nos jambes sont toujours de la partie ! <br/>
+              Pour soutenir la lutte contre la <b style="color:#0b8674">mucoviscidose</b> nous lançons un challenge : l’équipe féminine de l’Avenir Aturin vous propose, en collaboration avec les <b style="color:#0b8674">Virades de l’Espoir</b>, de faire un <b>tour du monde</b> avant la journée nationale du <i style="font-size: 20px;">26 septembre 2021</i>. <br/>
+              <br/>Comment ?
+              <br/>Avec une <b>paire de basket</b> et un peu de <b>motivation</b>! <br/>
+              Alors, prêt à relever le défi ?
+            </h5>
+            <hr/>
+            <div class="countdown-header">
+              <h3>Je contribue à la cause</h3>            
+              <p>Déjà <b id='nb'>...</b> km parcourus !! </p> 
+              <div id="myProgress">
+                <div id="myBar"></div>
+              </div>
+              <input type="number" id="km" name="km" min="1" max="50" placeholder="1">
+              <input type="button" onclick="write_database()" value="Ajouter mes kilomètres" /> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/row-->
+    </div>
+    <!--/container-->
+    
+  </div>
+  <!--/H-->
+  <div type="footer">
+    <p style="color:white;position : absolute; bottom:5px; right:5px">Powered by Yann Coussemacker & Nicolas Desclaux.</p>
+  </div>
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/php-mail-form/validate.js"></script>
+  <script src="lib/countdown/jquery.plugin.min.js"></script>
+  <script src="lib/countdown/jquery.countdown.min.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyAK5wjiPCTwIsX9yMzl6j1tKqzh1PMyRl4",
+      authDomain: "landglobe-d3aaa.firebaseapp.com",
+      projectId: "landglobe-d3aaa",
+      storageBucket: "landglobe-d3aaa.appspot.com",
+      messagingSenderId: "596476482789",
+      appId: "1:596476482789:web:18a6a7148223be3a13300c",
+      measurementId: "G-RSF6ZECP6N"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    
+    var km = 0;
+
+    var i = 0 ;
+    function progress_bar(){
+      // progression de la barre
+      if(i==0){
+        i = 1;
+        var elem = document.getElementById("myBar");
+
+        let percentage_max = 98;
+        if(km<40075){
+          percentage_max = (km/40075)*100;
+        } 
+        console.log(percentage_max)
+        
+        var nb_step = 30
+
+        let step = percentage_max / nb_step;
+        var width = 0;
+
+        var id = setInterval(frame, nb_step);      
+        // console.log(width)
+        function frame() {
+          if (width >= percentage_max) {
+            clearInterval(id);
+            i = 0;
+          } else {
+            width += step;
+            elem.style.width = width.toString() + "%";
+            // console.log(width)
+            
+          }
+        }
+      }
+    }
+
+    function read_database(){
+      var dataB = firebase.database().ref('km/');
+      dataB.on('value', (snapshot) => {
+        const data = snapshot.val();
+        console.log(data)
+        document.getElementById('nb').innerHTML = data; 
+        km = data;
+        progress_bar();
+      });
+      // console.log("firebase : " + database.km.toString())
+    }
+
+    function write_database() {
+      var to_add = parseInt(document.getElementById('km').value);
+      km = km + to_add;
+      console.log("Write : " + km);
+      firebase.database().ref('/').set({
+        km : km,
+      });
+    }
+  </script>
+
+</body>
+
+
+
+</html>
