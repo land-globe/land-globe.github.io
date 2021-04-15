@@ -209,6 +209,7 @@ input {
   padding-right: 15px;
   padding-top: 15px;
   margin-top: 30px;
+  margin-bottom: 65px;
 }
 
 #h {
@@ -230,6 +231,7 @@ input {
   background-size: contain;
   /* padding-top : 3%; */
   /* padding-bottom : 10%; */
+  z-index: 10;
 }
 
 #h h1 {
