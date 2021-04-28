@@ -14,6 +14,7 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 var km;
+var list;
 
 var i = 0 ;
 function progress_bar(){
@@ -49,23 +50,49 @@ if(i==0){
 }
 }
 
-function read_database(){
-var dataB = firebase.database().ref('km/');
-dataB.on('value', (snapshot) => {
-    const data = snapshot.val();
-    console.log(data)
-    document.getElementById('nb').innerHTML = data; 
-    km = data;
-    progress_bar();
-});
+// function read_database(){
+//     var dataB = firebase.database().ref('km/');
+//     dataB.on('value', (snapshot) => {
+//         const data = snapshot.val();
+//         console.log(data)
+//         document.getElementById('nb').innerHTML = data; 
+//         km = data;
+//         progress_bar();
+//     });
+//     // console.log("firebase : " + database.km.toString())
+// }
+
+// function write_database() {
+//     var to_add = parseInt(document.getElementById('km').value);
+//     km = km + to_add;
+//     console.log("Write : " + km);
+//     firebase.database().ref('/').set({
+//         km : km,
+//     });
+// }
+
+function read_list(){
+    var dataB = firebase.database().ref('kms/');
+    dataB.on('value', (snapshot) => {
+        list = snapshot.val();
+        km=0;
+        list.forEach(el => {
+            km+=el
+        });
+        console.log(km);
+        document.getElementById('nb').innerHTML = km; 
+        progress_bar();
+
+    });
 // console.log("firebase : " + database.km.toString())
 }
 
-function write_database() {
-var to_add = parseInt(document.getElementById('km').value);
-km = km + to_add;
-console.log("Write : " + km);
-firebase.database().ref('/').set({
-    km : km,
-});
+function write_list(){
+    var to_add = parseInt(document.getElementById('km').value);
+    list.push(to_add)
+    console.log("Write : " + to_add);
+    firebase.database().ref('/').set({
+        kms : list,
+        km : km
+    });
 }
