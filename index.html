@@ -7,6 +7,11 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
+  <!-- Sweet alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
+
   <!-- Favicons -->
   <link href="img/téléchargement.png" rel="icon">
   <link href="img/téléchargement.png" rel="apple-touch-icon">
@@ -119,7 +124,7 @@
                 <div id="myBar"></div>
               </div>
               <input type="number" id="km" name="km" min="1" max="50" placeholder="1">
-              <input type="button" onclick="write_list()" value="Ajouter mes kilomètres" /> 
+              <input type="button" onclick="write_list()" value="Ajouter mes kilomètres" id='add_km_btn' /> 
             </div>
           </div>
         </div>

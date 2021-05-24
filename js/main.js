@@ -1,3 +1,10 @@
+// ES6 Modules or TypeScript
+// import Swal from 'sweetalert2'
+
+// // CommonJS
+// const Swal = require('sweetalert2')
+
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
@@ -89,10 +96,33 @@ function read_list(){
 
 function write_list(){
     var to_add = parseInt(document.getElementById('km').value);
-    list.push(to_add)
-    console.log("Write : " + to_add);
-    firebase.database().ref('/').set({
-        kms : list,
-        km : km
-    });
+    if(to_add <= 50) {
+        list.push(to_add)
+        console.log("Write : " + to_add);
+        firebase.database().ref('/').set({
+            kms : list,
+            km : km
+        });
+        Swal.fire({
+            icon: 'success',
+            title: 'Felicitation !',
+            text: 'Votre participation de ' + to_add.toString() + ' kms à bien été prise en compte.'
+        })
+        disable_btn()
+
+    }
+    else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Attention !',
+            text: 'Vous ne pouvez pas ajouter plus de 50km à la fois.'
+        })
+    }
+    document.getElementById('km').value = '';
+}
+
+
+function disable_btn(){
+    document.getElementById("add_km_btn").disabled = true;
+    setTimeout(function(){document.getElementById("add_km_btn").disabled = false;},10000);
 }
